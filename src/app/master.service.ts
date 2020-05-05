@@ -7,6 +7,7 @@ import { ValueService } from './value.service';
 export class MasterService {
   public realValue = '';
   public observableValue = '';
+  public promiseValue = '';
 
   constructor(
     private valueService: ValueService,
@@ -21,5 +22,12 @@ export class MasterService {
       .subscribe(
         (value) => this.observableValue = value,
       );
+  }
+
+  public setPromiseValue(): void {
+    this.valueService.getPromiseValue()
+      .then((value) => {
+        this.promiseValue = value;
+      });
   }
 }
